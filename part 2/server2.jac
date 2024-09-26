@@ -1,10 +1,9 @@
-#import:py from mtllm.llms {Ollama}
+import:py from mtllm.llms {Ollama}
 
 #glob llm = Ollama(model_name='llama3.1');
+#glob llm = Ollama(model_name='gemma2');
+glob llm = Ollama(model_name='nemotron-mini');
 
-import:py from mtllm.llms {OpenAI}
-
-glob llm = OpenAI(model_name='gpt-4o');
 
 import:jac from rag {RagEngine}
 glob rag_engine:RagEngine = RagEngine();
