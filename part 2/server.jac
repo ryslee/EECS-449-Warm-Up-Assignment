@@ -1,8 +1,8 @@
 import:py from mtllm.llms {Ollama}
 
-#glob llm = Ollama(model_name='llama3.1');
+glob llm = Ollama(model_name='llama3.1');
 #glob llm = Ollama(model_name='gemma2');
-glob llm = Ollama(model_name='nemotron-mini');
+#glob llm = Ollama(model_name='nemotron-mini');
 
 
 import:jac from rag {RagEngine}
