@@ -77,7 +77,7 @@ node Session {
 enum ChatType {
     RAG : 'Need to use Retrievable information in specific documents to respond' = "RAG",
     QA : 'Given context is enough for an answer' = "user_qa",
-    Trivia : "Respond with trivia on Natural Language Processing (NLP) terminology" = "give trivia"
+    Trivia : "Respond with trivia based on OLLAMA pre-trained knowledge" = "give trivia"
 }
 
 
@@ -121,11 +121,18 @@ node TriviaChat :Chat: {
 
     can respond with infer entry {
         can 'Respond to message using chat_history as context and agent_role as the goal of the agent'
+        
+        # This function responds to user messages by leveraging the llm model.
+        # It utilizes the `message`, `chat_history`, and a specified `agent_role`.
         respond_with_llm(   
             message:'current message':str,
             chat_history: 'chat history':list[dict],
             agent_role:'role of the agent responding':str
         ) -> 'response':str by llm();
+
+        # Generate the response for the user based on the current message and chat history.
+        # The agent role is defined to inform the LLM about the purpose of the interaction.
+        # In this case, the role is to act as a trivia expert ready to answer questions from various categories.
         here.response = respond_with_llm(
             here.message, 
             here.chat_history, 
